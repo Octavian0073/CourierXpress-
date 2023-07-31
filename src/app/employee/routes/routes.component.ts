@@ -1,5 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import {MatTable} from '@angular/material/table';
+import { DialogRouteComponent } from './dialog-route/dialog-route.component';
 export interface PeriodicElement {
   originCity: string;
   destinationCity: string;
@@ -21,17 +23,13 @@ export class RoutesComponent implements OnInit {
 
   @ViewChild(MatTable) table!: MatTable<PeriodicElement>;
 
+  constructor(public dialog: MatDialog) {}
+
+  ngOnInit(): void {}
+
   addData() {
-    const randomElementIndex = Math.floor(Math.random() * ELEMENT_DATA.length);
-    this.dataSource.push(ELEMENT_DATA[randomElementIndex]);
-    this.table.renderRows();
+    this.dialog.open(DialogRouteComponent, { width:'450px', height: '550px' });
   }
 
-
-  constructor() {}
-
-  ngOnInit(): void {
-    console.log(this.dataSource)
-  }
 
 }

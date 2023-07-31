@@ -23,7 +23,7 @@ import { UpdateShipmentComponent } from './update-shipment/update-shipment.compo
     EmployeeComponent,
     PackageDialogComponent,
     ShipmentDetailsComponent,
-    UpdateShipmentComponent
+    UpdateShipmentComponent,
   ],
   imports: [
     CommonModule,
