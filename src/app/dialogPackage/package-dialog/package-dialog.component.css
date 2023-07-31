@@ -1,0 +1,11 @@
+.buttons,
+.title,
+.form {
+    display:flex;
+    justify-content: center;
+}
+
+.form {
+    flex-direction: column;
+
+}

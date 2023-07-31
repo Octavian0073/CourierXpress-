@@ -1,0 +1,17 @@
+<div class="container">
+    <h1 class="title mb-5">Employee Page</h1>
+    <mat-accordion>
+        <mat-expansion-panel>
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                See Your Options
+                </mat-panel-title>
+            </mat-expansion-panel-header>
+            <button mat-button color="accent">Update Shipments</button>
+            <button mat-button color="accent" (click)="seeRoutes()">See Routes</button>
+        </mat-expansion-panel>
+    </mat-accordion>
+    <div class="shipment mt-3">
+        <button mat-raised-button color="accent" (click)="openPackageForm()">Add Package</button>
+    </div>
+</div>

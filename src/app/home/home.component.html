@@ -1,0 +1,23 @@
+<!-- <button mat-raised-button color="primary">Send A Package</button>
+<button mat-raised-button color="primary" class="ms-5">See Routes</button>
+<div class="status mt-3">
+    <button mat-raised-button color="accent">See Shipment Status</button>
+</div>
+ -->
+ 
+<div class="container">
+    <h1 class="title mb-5">Fast Courier</h1>
+    <mat-accordion>
+        <mat-expansion-panel>
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                See Your Options
+                </mat-panel-title>
+            </mat-expansion-panel-header>
+            <button mat-button color="accent" (click)="openEmployeeDialog()">Employee</button>
+            <button mat-button color="primary" (click)="openCustomerDialog()">Customer</button>
+            <button mat-button color="accent" (click)="openDriverDialog()">Driver</button>
+        </mat-expansion-panel>
+    </mat-accordion>
+</div>
+
