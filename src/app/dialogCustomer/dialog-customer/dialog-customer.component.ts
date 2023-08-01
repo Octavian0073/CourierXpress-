@@ -12,23 +12,23 @@ import { FormGroup } from '@angular/forms';
 })
 export class DialogCustomerComponent implements OnInit {
 
-  id ?: number;
-  shipmentCode ?: number;
+  id?: number;
+  shipmentCode?: number;
 
-  constructor( 
+  constructor(
     public dialogRef: MatDialogRef<DialogCustomerComponent>,
-    private registerService : RegisterCustomerService,
-    private route : Router
-    ) {}
+    private registerService: RegisterCustomerService,
+    private route: Router
+  ) { }
 
-  ngOnInit(): void {}
-  
+  ngOnInit(): void { }
+
   register() {
-//     if(this.registerService.register(this.data.number)) {
-//       this.route.navigate(['/employees']);
-//   }
+    //     if(this.registerService.register(this.data.number)) {
+    //       this.route.navigate(['/employees']);
+    //   }
 
-}
+  }
 
   onCancelClick(): void {
     this.dialogRef.close();

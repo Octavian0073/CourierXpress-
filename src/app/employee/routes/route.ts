@@ -9,7 +9,5 @@ export interface Route {
         cityName: string,
         hasOffice: true
     },
-    transportType: string,
-    pathId: number,
-    distance: number
+    transportType: string
 }

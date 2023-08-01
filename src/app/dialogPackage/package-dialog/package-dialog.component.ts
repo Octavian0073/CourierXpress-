@@ -19,8 +19,8 @@ export class PackageDialogComponent implements OnInit {
   recipient!: Recipient;
 
   transportTypes: any = [
-    {value: 'standard', viewValue: 'STANDARD'},
-    {value: 'special', viewValue: 'SPECIAL'},
+    { value: 'STANDARD', viewValue: 'STANDARD' },
+    { value: 'SPECIAL', viewValue: 'SPECIAL' },
   ];
 
   constructor(
@@ -28,20 +28,20 @@ export class PackageDialogComponent implements OnInit {
     private fb: FormBuilder,
     private packageDialogService: PackageDialogService,
     private route: Router,
-    ) {}
+  ) { }
 
   ngOnInit(): void {
     this.registerForm = this.fb.group({
-      originCityId: [0, {validators: [Validators.required]}],
-      originCity: ['', {validators: [Validators.required]}],
-      destinationCityId: [0, {validators: [Validators.required]}],
-      destinationCity: ['', {validators: [Validators.required]}],
-      senderName: ['', {validators: [Validators.required]}],
-      senderNumber: ['', {validators: [Validators.required]}],
-      recipientName: ['', {validators: [Validators.required]}],
-      recipientNumber: ['', {validators: [Validators.required]}],
-      packageWeight: [0, {validators: [Validators.required]}],
-      transportType: ['', {validators: [Validators.required]}]
+      originCityId: [0, { validators: [Validators.required] }],
+      originCity: ['', { validators: [Validators.required] }],
+      destinationCityId: [0, { validators: [Validators.required] }],
+      destinationCity: ['', { validators: [Validators.required] }],
+      senderName: ['', { validators: [Validators.required] }],
+      senderNumber: ['', { validators: [Validators.required] }],
+      recipientName: ['', { validators: [Validators.required] }],
+      recipientNumber: ['', { validators: [Validators.required] }],
+      packageWeight: [0, { validators: [Validators.required] }],
+      transportType: ['', { validators: [Validators.required] }]
     })
     this.registerForm.valueChanges.subscribe((data) => {
       console.log(data);
@@ -56,17 +56,17 @@ export class PackageDialogComponent implements OnInit {
     this.registerForm.reset({
       originCityId: 0,
       originCity: '',
-      destinationCityId: 0, 
-      destinationCity: '', 
-      senderName: '', 
-      senderNumber: '', 
-      recipientName: '', 
-      recipientNumber: '', 
-      packageWeight: 0, 
-      transportType: '', 
+      destinationCityId: 0,
+      destinationCity: '',
+      senderName: '',
+      senderNumber: '',
+      recipientName: '',
+      recipientNumber: '',
+      packageWeight: 0,
+      transportType: '',
     });
   }
-    
+
   onCancelClick(): void {
     this.dialogRef.close();
   }

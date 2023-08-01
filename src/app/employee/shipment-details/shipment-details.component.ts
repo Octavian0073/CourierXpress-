@@ -7,14 +7,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ShipmentDetailsComponent implements OnInit {
 
-  clientCode!:number;
+  clientCode!: number;
   shipmentCode!: number;
   distance!: number;
   time!: number;
   price!: number;
 
-  constructor() {}
+  constructor() { }
 
-  ngOnInit(): void {}
+  ngOnInit(): void { }
 
 }

@@ -3,55 +3,56 @@
 </div>
 <div mat-dialog-content>
   <ng-scrollbar style="height: 350px" visibility="hover">
-  <form [formGroup]="registerForm" class="form" (ngSubmit)="register()">
-    <mat-form-field>
-      <mat-label>Origin City ID</mat-label>
-      <input type="number" matInput formControlName="originCityId">
-    </mat-form-field>
-    <mat-form-field>
-      <mat-label>Origin City</mat-label>
-      <input type="text" matInput formControlName="originCity">
-    </mat-form-field>
-    <mat-form-field>
-      <mat-label>Destination City ID</mat-label>
-      <input type="number" matInput formControlName="destinationCityId">
-    </mat-form-field>
-    <mat-form-field>
-      <mat-label>Destination City</mat-label>
-      <input type="text" matInput formControlName="destinationCity">
-    </mat-form-field>
-    <mat-form-field>
-      <mat-label>Sender Name</mat-label>
-      <input type="text" matInput formControlName="senderName">
-    </mat-form-field>
-    <mat-form-field>
-      <mat-label>Sender Phone Number</mat-label>
-      <input type="text" matInput formControlName="senderNumber">
-    </mat-form-field>
-    <mat-form-field>
-      <mat-label>Recipient Name</mat-label>
-      <input type="text" matInput formControlName="recipientName">
-    </mat-form-field>
-    <mat-form-field>
-      <mat-label>Recipient Phone Number</mat-label>
-      <input type="text" matInput formControlName="recipientNumber">
-    </mat-form-field>
-    <mat-form-field>
-      <mat-label>Package Weight</mat-label>
-      <input type="number" matInput formControlName="packageWeight">
-    </mat-form-field>
-    <mat-form-field>
-      <mat-label>Type of Transport</mat-label>
-      <mat-select formControlName="transportType">
-        <mat-option *ngFor="let transportType of transportTypes" [value]="transportType.value">
-          {{transportType.viewValue}}
-        </mat-option>
-      </mat-select>
-    </mat-form-field>
-  </form>
-</ng-scrollbar>
+    <form [formGroup]="registerForm" class="form" (ngSubmit)="register()">
+      <mat-form-field>
+        <mat-label>Origin City ID</mat-label>
+        <input type="number" matInput formControlName="originCityId">
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Origin City</mat-label>
+        <input type="text" matInput formControlName="originCity">
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Destination City ID</mat-label>
+        <input type="number" matInput formControlName="destinationCityId">
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Destination City</mat-label>
+        <input type="text" matInput formControlName="destinationCity">
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Sender Name</mat-label>
+        <input type="text" matInput formControlName="senderName">
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Sender Phone Number</mat-label>
+        <input type="text" matInput formControlName="senderNumber">
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Recipient Name</mat-label>
+        <input type="text" matInput formControlName="recipientName">
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Recipient Phone Number</mat-label>
+        <input type="text" matInput formControlName="recipientNumber">
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Package Weight</mat-label>
+        <input type="number" matInput formControlName="packageWeight">
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Type of Transport</mat-label>
+        <mat-select formControlName="transportType">
+          <mat-option *ngFor="let transportType of transportTypes" [value]="transportType.value">
+            {{transportType.viewValue}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </form>
+  </ng-scrollbar>
 </div>
 <div mat-dialog-actions class="buttons mt-4">
   <button mat-button type="button" (click)="onCancelClick()">Cancel</button>
-  <button mat-button [disabled]="registerForm.invalid" [mat-dialog-close]="true" [formGroup]="registerForm" (click)="register()">Register</button>
+  <button mat-button [disabled]="registerForm.invalid" [mat-dialog-close]="true" [formGroup]="registerForm"
+    (click)="register()">Register</button>
 </div>

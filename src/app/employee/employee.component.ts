@@ -11,17 +11,17 @@ import { PackageDialogComponent } from '../dialogPackage/package-dialog/package-
 export class EmployeeComponent implements OnInit {
 
   constructor(
-    private route : Router,
+    private route: Router,
     public dialog: MatDialog
-    ) {}
+  ) { }
 
-  ngOnInit(): void {}
+  ngOnInit(): void { }
 
   seeRoutes() {
     this.route.navigate(['employee/routes']);
   }
 
   openPackageForm(): void {
-    this.dialog.open(PackageDialogComponent, { width:'450px', height: '550px' });
+    this.dialog.open(PackageDialogComponent, { width: '450px', height: '550px' });
   }
 }

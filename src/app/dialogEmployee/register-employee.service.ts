@@ -7,14 +7,14 @@ import { Person } from '../persons';
 })
 export class RegisterService {
 
-  isRegistered:boolean = false;
-  role:string = '';
+  isRegistered: boolean = false;
+  role: string = '';
 
-  constructor(private http : HttpClient) { }
+  constructor(private http: HttpClient) { }
 
-  register(id:number) {
+  register(id: number) {
     this.http.get<Person>(`/api/persons/${id}`).subscribe((data) => this.role = data.role.roleName);
-    if(this.role === 'employee') {
+    if (this.role === 'employee') {
       this.isRegistered = true;
     }
     return this.isRegistered;

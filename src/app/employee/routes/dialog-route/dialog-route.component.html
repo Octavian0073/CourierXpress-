@@ -1,9 +1,9 @@
 <div class="title">
-    <h1 mat-dialog-title>Customer Registration</h1>
-  </div>
-  <div mat-dialog-content>
-    <ng-scrollbar style="height: 350px" visibility="hover">
-    <form [formGroup]="addRouteForm" class="form" (ngSubmit)="addRoute()">
+  <h1 mat-dialog-title>Customer Registration</h1>
+</div>
+<div mat-dialog-content>
+  <ng-scrollbar style="height: 350px" visibility="hover">
+    <form [formGroup]="addRouteForm" class="form">
       <mat-form-field>
         <mat-label>Origin City ID</mat-label>
         <input type="number" matInput formControlName="originCityId">
@@ -30,8 +30,9 @@
       </mat-form-field>
     </form>
   </ng-scrollbar>
-  </div>
-  <div mat-dialog-actions class="buttons mt-4">
-    <button mat-button type="button" (click)="onCancelClick()">Cancel</button>
-    <button mat-button [disabled]="addRouteForm.invalid" [mat-dialog-close]="true" [formGroup]="addRouteForm" (click)="addRoute()">Add</button>
-  </div>
+</div>
+<div mat-dialog-actions class="buttons mt-4">
+  <button mat-button type="button" (click)="onCancelClick()">Cancel</button>
+  <button mat-button [disabled]="addRouteForm.invalid" [mat-dialog-close]="true" [formGroup]="addRouteForm"
+    (click)="addRoute()">Add</button>
+</div>

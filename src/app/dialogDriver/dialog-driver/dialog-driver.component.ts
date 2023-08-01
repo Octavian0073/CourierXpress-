@@ -10,21 +10,21 @@ import { RegisterDriverService } from '../register-driver.service';
 })
 export class DialogDriverComponent implements OnInit {
 
-  id ?: number;
-  shipmentCode ?: number;
+  id?: number;
+  shipmentCode?: number;
 
-  constructor( 
+  constructor(
     public dialogRef: MatDialogRef<DialogDriverComponent>,
-    private registerService : RegisterDriverService,
-    private route : Router
-    ) {}
+    private registerService: RegisterDriverService,
+    private route: Router
+  ) { }
 
-  ngOnInit(): void {}
-  
+  ngOnInit(): void { }
+
   register() {
-//     if(this.registerService.register(this.data.number)) {
-//       this.route.navigate(['/employees']);
-//   }
+    //     if(this.registerService.register(this.data.number)) {
+    //       this.route.navigate(['/employees']);
+    //   }
 
   }
 

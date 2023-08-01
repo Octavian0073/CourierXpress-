@@ -1,6 +1,6 @@
 export interface Person {
-    id?:number;
-    personName:string;
+    id?: number;
+    personName: string;
     inCity: {
         id: number,
         cityName: string,

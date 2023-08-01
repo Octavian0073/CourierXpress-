@@ -7,9 +7,13 @@ import { Route } from './route';
 })
 export class RoutesService {
 
-  constructor(private http:HttpClient) { }
+  constructor(private http: HttpClient) { }
 
   getRoutes() {
     return this.http.get<Route[]>('http://localhost:8080/api/routes')
+  }
+
+  postRoute(route: Route) {
+    return this.http.post<Route>('http://localhost:8080/api/routes', route);
   }
 }

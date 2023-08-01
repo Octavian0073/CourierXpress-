@@ -11,20 +11,20 @@ import { Router } from '@angular/router';
 })
 export class DialogEmployeeComponent implements OnInit {
 
-  id ?: number;
+  id?: number;
 
-  constructor( 
+  constructor(
     public dialogRef: MatDialogRef<DialogEmployeeComponent>,
-    private registerService : RegisterService,
-    private route : Router
-    ) {}
+    private registerService: RegisterService,
+    private route: Router
+  ) { }
 
-  ngOnInit(): void {}
-  
+  ngOnInit(): void { }
+
   register() {
-//     if(this.registerService.register(this.data.number)) {
-//       this.route.navigate(['/employees']);
-//   }
+    //     if(this.registerService.register(this.data.number)) {
+    //       this.route.navigate(['/employees']);
+    //   }
     this.route.navigate(['/employee', this.id]);
   }
 

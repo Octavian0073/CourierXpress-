@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
-import { Router } from '@angular/router';
+import { RoutesService } from '../routes.service';
+import { Route } from '../route';
 
 @Component({
   selector: 'fast-dialog-route',
@@ -11,39 +12,54 @@ import { Router } from '@angular/router';
 export class DialogRouteComponent implements OnInit {
 
   addRouteForm!: FormGroup;
-
+  route!: Route;
   transportTypes: any = [
-    {value: 'standard', viewValue: 'STANDARD'},
-    {value: 'special', viewValue: 'SPECIAL'},
+    { value: 'STANDARD', viewValue: 'STANDARD' },
+    { value: 'SPECIAL', viewValue: 'SPECIAL' },
   ];
 
   constructor(
     public dialogRef: MatDialogRef<DialogRouteComponent>,
     private fb: FormBuilder,
-    private route: Router,
-    ) {}
+    private routeService: RoutesService
+  ) { }
 
   ngOnInit(): void {
     this.addRouteForm = this.fb.group({
-      originCityId: [0, {validators: [Validators.required]}],
-      originCity: ['', {validators: [Validators.required]}],
-      destinationCityId: [0, {validators: [Validators.required]}],
-      destinationCity: ['', {validators: [Validators.required]}],
-      transportType: ['', {validators: [Validators.required]}]
+      originCityId: [0, { validators: [Validators.required] }],
+      originCity: ['', { validators: [Validators.required] }],
+      destinationCityId: [0, { validators: [Validators.required] }],
+      destinationCity: ['', { validators: [Validators.required] }],
+      transportType: ['', { validators: [Validators.required] }]
     });
 
     this.addRouteForm.valueChanges.subscribe((data) => {
-      console.log(data);
+      this.route = {
+        fromCity: {
+          id: this.addRouteForm.value.originCityId,
+          cityName: this.addRouteForm.value.originCity,
+          hasOffice: true
+        },
+        toCity: {
+          id: this.addRouteForm.value.destinationCityId,
+          cityName: this.addRouteForm.value.destinationCity,
+          hasOffice: true
+        },
+        transportType: this.addRouteForm.value.transportType,
+      }
     })
   }
 
   addRoute() {
+    this.routeService.postRoute(this.route).subscribe((data) => {
+      console.log(data)
+    })
     this.addRouteForm = this.fb.group({
-      originCityId: 0, 
-      originCity: '', 
-      destinationCityId: 0, 
-      destinationCity: '', 
-      transportType: '', 
+      originCityId: 0,
+      originCity: '',
+      destinationCityId: 0,
+      destinationCity: '',
+      transportType: '',
     });
   }
 
