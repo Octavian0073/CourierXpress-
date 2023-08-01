@@ -1,16 +1,9 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import {MatTable} from '@angular/material/table';
 import { DialogRouteComponent } from './dialog-route/dialog-route.component';
-export interface PeriodicElement {
-  originCity: string;
-  destinationCity: string;
-  transportType: string;
-}
-const ELEMENT_DATA: PeriodicElement[] = [
-  {originCity: 'Oradea', destinationCity: 'Timisoara', transportType: 'SPECIAL'},
- 
-];
+import { Route } from './route';
+import { RoutesService } from './routes.service';
+
 @Component({
   selector: 'fast-routes',
   templateUrl: './routes.component.html',
@@ -19,13 +12,19 @@ const ELEMENT_DATA: PeriodicElement[] = [
 export class RoutesComponent implements OnInit {
 
   displayedColumns: string[] = ['originCity', 'destinationCity', 'transportType'];
-  dataSource = [...ELEMENT_DATA];
+  routes !: Route[];
+  routes$ = this.routesService.getRoutes();
 
-  @ViewChild(MatTable) table!: MatTable<PeriodicElement>;
+  constructor(
+    public dialog: MatDialog,
+    private routesService: RoutesService
+  ) {}
 
-  constructor(public dialog: MatDialog) {}
-
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.routes$.subscribe((data) => {
+      this.routes = [...data];
+    })
+  }
 
   addData() {
     this.dialog.open(DialogRouteComponent, { width:'450px', height: '550px' });
