@@ -1,81 +1,57 @@
-export interface Package {
-    packageWeight: 0,
-    sender: {
-        id: 1,
-        personName: '',
-        inCity: {
-            id: 1,
-            cityName: '',
-            hasOffice: true
-        },
-        personPhone: '',
-        role: {
-            id: 3,
-            roleName: "sender"
-        }
-    },
-    receiver: {
-        id: 1,
-        personName: '',
-        inCity: {
-            id: '',
-            cityName: '',
-            hasOffice: true
-        },
-        personPhone: '',
-        role: {
-            id: 4,
-            roleName: "receiver"
-        }
-    },
+export interface Shipment {
+    packageWeight: number,
+    sender: Sender,
+    receiver: Recipient,
     route: {
-        id: 1,
+        id: number,
         fromCity: {
-            id: 1,
-            cityName: '',
-            hasOffice: true
+            id: number,
+            cityName: string,
+            hasOffice: boolean
         },
         toCity: {
-            id: 1,
-            cityName: '',
-            hasOffice: true
+            id: number,
+            cityName: string,
+            hasOffice: boolean
         },
-        transportType: "SPECIAL",
-        pathId: 0,
-        distance: 0
+        transportType: string,
+        pathId: number,
+        distance: number
     },
-    currentCity: 1,
-    price: 5,
-    packageType: '',
-    packageStatus: '',
-    returnStarted: false,
-    packageReturned: false
+    currentCity: number,
+    price: number,
+    packageType: string,
+    packageStatus: string,
+    returnStarted: boolean,
+    packageReturned: boolean
 }
 
 export interface Sender {
-    personName: '',
+    id?:number,
+    personName: string,
     inCity: {
-        id: 1,
-        cityName: '',
-        hasOffice: true
+        id: number,
+        cityName: string,
+        hasOffice: boolean
     },
-    personPhone: '',
+    personPhone: string,
     role: {
-        id: 3,
-        roleName: "sender"
+        id: number,
+        roleName: string
     }
 }
 
 export interface Recipient {
-    personName: '',
+    id?:number,
+    personName: string,
     inCity: {
-        id: 1,
-        cityName: '',
-        hasOffice: true
+        id: number,
+        cityName: string,
+        hasOffice: boolean
     },
-    personPhone: '',
+    personPhone: string,
     role: {
-        id: 4,
-        roleName: "receiver"
+        id: number,
+        roleName: string
     }
 }

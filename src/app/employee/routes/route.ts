@@ -1,4 +1,5 @@
 export interface Route {
+    id?: number,
     fromCity: {
         id: number,
         cityName: string,
@@ -9,5 +10,7 @@ export interface Route {
         cityName: string,
         hasOffice: true
     },
-    transportType: string
+    transportType: string,
+    pathId?: number,
+    distance?: number
 }

@@ -3,7 +3,7 @@
 </div>
 <div mat-dialog-content>
   <ng-scrollbar style="height: 350px" visibility="hover">
-    <form [formGroup]="registerForm" class="form" (ngSubmit)="register()">
+    <form [formGroup]="registerForm" class="form">
       <mat-form-field>
         <mat-label>Origin City ID</mat-label>
         <input type="number" matInput formControlName="originCityId">
@@ -54,5 +54,5 @@
 <div mat-dialog-actions class="buttons mt-4">
   <button mat-button type="button" (click)="onCancelClick()">Cancel</button>
   <button mat-button [disabled]="registerForm.invalid" [mat-dialog-close]="true" [formGroup]="registerForm"
-    (click)="register()">Register</button>
+    (click)="addPackage()">Add Package</button>
 </div>

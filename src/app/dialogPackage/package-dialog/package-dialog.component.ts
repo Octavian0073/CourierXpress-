@@ -3,7 +3,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 import { PackageDialogService } from '../package-dialog.service';
 import { Router } from '@angular/router';
-import { Package, Recipient, Sender } from '../package';
+import { Shipment, Recipient, Sender } from '../package';
+import { forkJoin, switchMap } from 'rxjs';
 
 
 @Component({
@@ -14,9 +15,15 @@ import { Package, Recipient, Sender } from '../package';
 export class PackageDialogComponent implements OnInit {
 
   registerForm!: FormGroup;
-  package!: Package;
+  shipment!: Shipment;
   sender!: Sender;
   recipient!: Recipient;
+
+  postSender$ = this.packageDialogService.postSender(this.sender);
+  postRecipient$ = this.packageDialogService.postRecipient(this.recipient);
+  getRoutes$ = this.packageDialogService.getRoutes();
+
+
 
   transportTypes: any = [
     { value: 'STANDARD', viewValue: 'STANDARD' },
@@ -44,27 +51,92 @@ export class PackageDialogComponent implements OnInit {
       transportType: ['', { validators: [Validators.required] }]
     })
     this.registerForm.valueChanges.subscribe((data) => {
-      console.log(data);
+      
+      this.recipient = {
+        personName: data.recipientName,
+        inCity: {
+          id: data.destinationCityId,
+          cityName: data.destinationCity,
+          hasOffice: true
+        },
+        personPhone: data.recipientNumber,
+        role: {
+          id: 4,
+          roleName: "receiver"
+        }
+      };
+      this.sender = {
+        personName: data.senderName,
+        inCity: {
+          id: data.originCityId,
+          cityName: data.originCity,
+          hasOffice: true
+        },
+        personPhone: data.senderNumber,
+        role: {
+          id: 3,
+          roleName: "sender"
+        }
+      }
+     
+      this.shipment = {
+        packageWeight: data.packageWeight,
+        sender: this.sender,
+        receiver: this.recipient,
+        route: {
+          id: 1,
+          fromCity: {
+            id: data.originCityId,
+            cityName: data.originCity,
+            hasOffice: true
+          },
+          toCity: {
+            id: data.destinationCityId,
+            cityName: data.destinationCity,
+            hasOffice: true
+          },
+          transportType: "SPECIAL",
+          pathId: 0,
+          distance: 0
+        },
+        currentCity: data.originCityId,
+        price: 5,
+        packageType: data.transportType,
+        packageStatus: "waiting for response",
+        returnStarted: false,
+        packageReturned: false
+      }
     })
   }
 
-  register() {
-    //     if(this.registerService.register(this.data.number)) {
-    //       this.route.navigate(['/employees']);
-    //   }
-    this.route.navigate(['employee/shipment']);
-    this.registerForm.reset({
-      originCityId: 0,
-      originCity: '',
-      destinationCityId: 0,
-      destinationCity: '',
-      senderName: '',
-      senderNumber: '',
-      recipientName: '',
-      recipientNumber: '',
-      packageWeight: 0,
-      transportType: '',
-    });
+  addPackage() {
+    forkJoin([
+      this.packageDialogService.postSender(this.sender),
+      this.packageDialogService.postRecipient(this.recipient),
+      this.packageDialogService.getRoutes()
+    ]).pipe(
+      switchMap((data) => {
+        const [senderData, recipientData, routesData] = data;
+        this.recipient.id = recipientData.id;
+        this.sender.id = senderData.id;
+        routesData.map((route) => {
+          if(route.fromCity.id === this.shipment.route.fromCity.id && 
+            route.toCity.id === this.shipment.route.toCity.id
+          ) {
+            this.shipment.route.id = route.id!;
+            this.shipment.route.pathId = route.pathId!;
+            this.shipment.route.distance = route.distance!;
+          }
+          
+        })
+        return this.packageDialogService.postShipment(this.shipment);
+      })
+    ).subscribe((data) => {
+      this.shipment = data;
+      console.log(this.shipment, 'okk')
+    });    
+    
+    this.route.navigate(['employee/shipment'], {queryParams: { shipment: this.shipment }});
   }
 
   onCancelClick(): void {

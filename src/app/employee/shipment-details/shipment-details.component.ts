@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { ShipmentDetailsService } from './shipment-details.service';
 
 @Component({
   selector: 'fast-shipment-details',
@@ -12,9 +14,13 @@ export class ShipmentDetailsComponent implements OnInit {
   distance!: number;
   time!: number;
   price!: number;
+  weight!: number;
+  type!: string;
 
-  constructor() { }
+  constructor(
+    private router: ActivatedRoute,
+    private shipmentDetailsService : ShipmentDetailsService,
+    ) { }
 
-  ngOnInit(): void { }
-
+  ngOnInit(): void {}
 }

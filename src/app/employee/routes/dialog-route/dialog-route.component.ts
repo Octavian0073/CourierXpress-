@@ -36,16 +36,16 @@ export class DialogRouteComponent implements OnInit {
     this.addRouteForm.valueChanges.subscribe((data) => {
       this.route = {
         fromCity: {
-          id: this.addRouteForm.value.originCityId,
-          cityName: this.addRouteForm.value.originCity,
+          id: data.originCityId,
+          cityName: data.originCity,
           hasOffice: true
         },
         toCity: {
-          id: this.addRouteForm.value.destinationCityId,
-          cityName: this.addRouteForm.value.destinationCity,
+          id: data.destinationCityId,
+          cityName: data.destinationCity,
           hasOffice: true
         },
-        transportType: this.addRouteForm.value.transportType,
+        transportType: data.transportType,
       }
     })
   }
