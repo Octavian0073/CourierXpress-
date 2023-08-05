@@ -6,8 +6,6 @@ import { Router } from '@angular/router';
 import { Shipment, Recipient, Sender } from '../package';
 import { forkJoin, switchMap } from 'rxjs';
 import { Route } from '../../employee/routes/route';
-import { SharedService } from 'src/app/employee/shared.service';
-
 
 @Component({
   selector: 'fast-package-dialog',
@@ -26,8 +24,6 @@ export class PackageDialogComponent implements OnInit {
   postRecipient$ = this.packageDialogService.postRecipient(this.recipient);
   getRoutes$ = this.packageDialogService.getRoutes();
 
-
-
   transportTypes: any = [
     { value: 'STANDARD', viewValue: 'STANDARD' },
     { value: 'SPECIAL', viewValue: 'SPECIAL' },
@@ -38,7 +34,6 @@ export class PackageDialogComponent implements OnInit {
     private fb: FormBuilder,
     private packageDialogService: PackageDialogService,
     private router: Router,
-    private sharedService: SharedService
   ) { }
 
   ngOnInit(): void {

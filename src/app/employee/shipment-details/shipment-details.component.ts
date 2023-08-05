@@ -1,9 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ShipmentDetailsService } from './shipment-details.service';
-import { map } from 'rxjs';
-import { Status } from 'src/app/dialogPackage/package';
-import { SharedService } from '../shared.service';
 
 @Component({
   selector: 'fast-shipment-details',
@@ -12,7 +9,7 @@ import { SharedService } from '../shared.service';
 })
 export class ShipmentDetailsComponent implements OnInit {
 
-  clientCode!: number; 
+  clientCode!: number;
   shipmentCode!: number;
   distance!: number;
   time!: number;
@@ -20,19 +17,18 @@ export class ShipmentDetailsComponent implements OnInit {
   weight!: number;
   type!: string;
   id!: number;
-  status = {packageStatus : "in transit"};
+  status = { packageStatus: "in transit" };
   clicked = false;
 
   constructor(
     private router: ActivatedRoute,
-    private shipmentDetailsService : ShipmentDetailsService,
-    private sharedService: SharedService
-    ) { }
+    private shipmentDetailsService: ShipmentDetailsService,
+  ) { }
 
   ngOnInit(): void {
     this.id = this.router.snapshot.params['id'];
     this.shipmentDetailsService.getShipment(this.id).subscribe((data) => {
-      this.clientCode = data.sender.id!; 
+      this.clientCode = data.sender.id!;
       this.shipmentCode = data.id!;
       this.distance = data.route.distance!;
       this.time = data.route.distance! < 320 ? 1 : 2;
