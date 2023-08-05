@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { PackageDialogComponent } from '../dialogPackage/package-dialog/package-dialog.component';
+import { DialogShipmentComponent } from '../dialog-shipment/dialog-shipment.component';
 
 @Component({
   selector: 'fast-employee',
@@ -23,5 +24,9 @@ export class EmployeeComponent implements OnInit {
 
   openPackageForm(): void {
     this.dialog.open(PackageDialogComponent, { width: '450px', height: '550px' });
+  }
+
+  updateShipments(): void {
+    this.dialog.open(DialogShipmentComponent, { width:'300px', height: '300px' });
   }
 }

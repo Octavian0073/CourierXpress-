@@ -12,21 +12,21 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { NgScrollbarModule } from 'ngx-scrollbar';
-import { ShipmentDetailsComponent } from './shipment-details/shipment-details.component';
-import { MatProgressBarModule } from '@angular/material/progress-bar';
-import { MatDividerModule } from '@angular/material/divider';
-import { MatCardModule } from '@angular/material/card';
-import { UpdateShipmentComponent } from './update-shipment/update-shipment.component';
+import { DialogShipmentComponent } from '../dialog-shipment/dialog-shipment.component';
+import { FormsModule } from '@angular/forms';
+import { UpdateShipmentsModule } from './update-shipments/update-shipments.module';
+import { ShipmentsDetailsModule } from './shipment-details/shipments-details.module';
 
 @NgModule({
   declarations: [
     EmployeeComponent,
     PackageDialogComponent,
-    ShipmentDetailsComponent,
-    UpdateShipmentComponent,
+    DialogShipmentComponent,
   ],
   imports: [
     CommonModule,
+    UpdateShipmentsModule,
+    ShipmentsDetailsModule,
     EmployeeRoutingModule,
     MatButtonModule,
     MatExpansionModule,
@@ -36,9 +36,7 @@ import { UpdateShipmentComponent } from './update-shipment/update-shipment.compo
     MatFormFieldModule,
     MatInputModule,
     NgScrollbarModule,
-    MatProgressBarModule,
-    MatDividerModule,
-    MatCardModule
+    FormsModule,
   ]
 })
 export class EmployeeModule { }

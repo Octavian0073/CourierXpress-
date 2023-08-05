@@ -14,8 +14,6 @@ export class ShipmentDetailsComponent implements OnInit {
   distance!: number;
   time!: number;
   price!: number;
-  weight!: number;
-  type!: string;
   id!: number;
   status = { packageStatus: "in transit" };
   clicked = false;

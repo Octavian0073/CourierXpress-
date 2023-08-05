@@ -1,0 +1,61 @@
+<div class="wrapper">
+    <div class="container text-center">
+        <mat-card class="example-card">
+            <mat-card-content>
+                <p class="lead mt-4">Client's code is {{clientCode}}. </p>
+                <p class="lead mt-4">Shipment code is {{id}}. </p>
+                <p class="lead mt-4">The route's distance is {{distance}}km. </p>
+                <p class="lead mt-4">The shipment status is: {{stringStatus}}. </p>
+                
+                <p class="lead mt-4">PRICE: {{price}} lei</p>
+                <mat-divider></mat-divider>
+            </mat-card-content>
+            <mat-card-actions class="button">
+                <mat-accordion>
+                    <mat-expansion-panel>
+                        <mat-expansion-panel-header>
+                            <mat-panel-title>
+                                Arrived
+                            </mat-panel-title>
+                        </mat-expansion-panel-header>
+                        <div class="buttons">
+                            <button mat-raised-button color="accent"  (click)="setInTransit()">Arrived</button>
+                            <button mat-raised-button color="accent" class="mt-2" (click)="setInTransit()">Delivered</button>           
+                        </div>                    
+                    </mat-expansion-panel>
+                </mat-accordion>
+                <mat-accordion>
+                    <mat-expansion-panel>
+                        <mat-expansion-panel-header>
+                            <mat-panel-title>
+                                Waiting Options
+                            </mat-panel-title>
+                        </mat-expansion-panel-header>
+                        <div class="buttons">
+                            <button mat-raised-button color="accent" (click)="setInTransit()">Wait for Recipient</button>           
+                            <button mat-raised-button color="accent"  class="mt-2" (click)="setInTransit()">Wait for Sender</button>
+                        </div>                    
+                    </mat-expansion-panel>
+                </mat-accordion>
+                <mat-accordion>
+                    <mat-expansion-panel>
+                        <mat-expansion-panel-header>
+                            <mat-panel-title>
+                                Return
+                            </mat-panel-title>
+                        </mat-expansion-panel-header>
+                        <div class="buttons">
+                        <button mat-raised-button color="accent"  (click)="setInTransit()">Start Return</button>
+                        <button mat-raised-button color="accent" class="mt-2" (click)="setInTransit()">Arrived Back</button>
+                        <button mat-raised-button color="accent" class="mt-2" (click)="setInTransit()">Returned</button>
+                    </div>
+                    </mat-expansion-panel>
+                </mat-accordion>
+                
+            </mat-card-actions>
+            <mat-card-footer>
+                <mat-progress-bar color="accent" mode="determinate" value="50"></mat-progress-bar>
+            </mat-card-footer>
+        </mat-card>
+    </div>
+</div>

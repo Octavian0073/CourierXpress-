@@ -1,0 +1,10 @@
+.buttons,
+.title,
+.dialogContainer {
+    display: flex;
+    justify-content: center;
+}
+
+.dialogContainer {
+    flex-direction: column;
+}

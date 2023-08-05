@@ -4,6 +4,7 @@ import { EmployeeComponent } from './employee.component';
 import { RoutesComponent } from './routes/routes.component';
 import { PackageDialogComponent } from '../dialogPackage/package-dialog/package-dialog.component';
 import { ShipmentDetailsComponent } from './shipment-details/shipment-details.component';
+import { UpdateShipmentsComponent } from './update-shipments/update-shipments.component';
 
 const routes: Routes = [
   // { 
@@ -15,6 +16,7 @@ const routes: Routes = [
   // },
   { path: 'shipment/:id', component: ShipmentDetailsComponent},
   { path: 'routes', loadChildren: () => import('./routes/routes.module').then(m => m.RoutesModule) },
+  { path: 'shipmentStatus/:id', component: UpdateShipmentsComponent },
   { path: ':id', component: EmployeeComponent },
 ];
 
