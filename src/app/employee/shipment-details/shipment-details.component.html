@@ -3,14 +3,14 @@
         <mat-card class="example-card">
             <mat-card-content>
                 <p class="lead mt-4">Client's code is {{clientCode}}. </p>
-                <p class="lead mt-4">Shipment code is {{shipmentCode}}. </p>
+                <p class="lead mt-4">Shipment code is {{id}}. </p>
                 <p class="lead mt-4">The route's distance is {{distance}}km. </p>
                 <p class="lead mt-4">It will arrive in approximately {{time}} day/s.</p>
                 <p class="lead mt-4">PRICE: {{price}} lei</p>
                 <mat-divider></mat-divider>
             </mat-card-content>
             <mat-card-actions class="button">
-                <button mat-raised-button color="accent" type="button">Accept & Send</button>
+                <button mat-raised-button color="accent" type="button" [disabled]="clicked" (click)="setInTransit()">Accept & Send</button>
             </mat-card-actions>
             <mat-card-footer>
                 <mat-progress-bar color="accent" mode="indeterminate"></mat-progress-bar>

@@ -5,6 +5,8 @@ import { PackageDialogService } from '../package-dialog.service';
 import { Router } from '@angular/router';
 import { Shipment, Recipient, Sender } from '../package';
 import { forkJoin, switchMap } from 'rxjs';
+import { Route } from '../../employee/routes/route';
+import { SharedService } from 'src/app/employee/shared.service';
 
 
 @Component({
@@ -18,6 +20,7 @@ export class PackageDialogComponent implements OnInit {
   shipment!: Shipment;
   sender!: Sender;
   recipient!: Recipient;
+  route!: Route;
 
   postSender$ = this.packageDialogService.postSender(this.sender);
   postRecipient$ = this.packageDialogService.postRecipient(this.recipient);
@@ -34,7 +37,8 @@ export class PackageDialogComponent implements OnInit {
     public dialogRef: MatDialogRef<PackageDialogComponent>,
     private fb: FormBuilder,
     private packageDialogService: PackageDialogService,
-    private route: Router,
+    private router: Router,
+    private sharedService: SharedService
   ) { }
 
   ngOnInit(): void {
@@ -51,7 +55,7 @@ export class PackageDialogComponent implements OnInit {
       transportType: ['', { validators: [Validators.required] }]
     })
     this.registerForm.valueChanges.subscribe((data) => {
-      
+
       this.recipient = {
         personName: data.recipientName,
         inCity: {
@@ -77,28 +81,29 @@ export class PackageDialogComponent implements OnInit {
           id: 3,
           roleName: "sender"
         }
+      };
+      this.route = {
+        id: 1,
+        fromCity: {
+          id: data.originCityId,
+          cityName: data.originCity,
+          hasOffice: true
+        },
+        toCity: {
+          id: data.destinationCityId,
+          cityName: data.destinationCity,
+          hasOffice: true
+        },
+        transportType: "SPECIAL",
+        pathId: 0,
+        distance: 0
       }
-     
+
       this.shipment = {
         packageWeight: data.packageWeight,
         sender: this.sender,
         receiver: this.recipient,
-        route: {
-          id: 1,
-          fromCity: {
-            id: data.originCityId,
-            cityName: data.originCity,
-            hasOffice: true
-          },
-          toCity: {
-            id: data.destinationCityId,
-            cityName: data.destinationCity,
-            hasOffice: true
-          },
-          transportType: "SPECIAL",
-          pathId: 0,
-          distance: 0
-        },
+        route: this.route,
         currentCity: data.originCityId,
         price: 5,
         packageType: data.transportType,
@@ -120,23 +125,20 @@ export class PackageDialogComponent implements OnInit {
         this.recipient.id = recipientData.id;
         this.sender.id = senderData.id;
         routesData.map((route) => {
-          if(route.fromCity.id === this.shipment.route.fromCity.id && 
+          if (route.fromCity.id === this.shipment.route.fromCity.id &&
             route.toCity.id === this.shipment.route.toCity.id
           ) {
             this.shipment.route.id = route.id!;
             this.shipment.route.pathId = route.pathId!;
             this.shipment.route.distance = route.distance!;
           }
-          
+
         })
         return this.packageDialogService.postShipment(this.shipment);
       })
     ).subscribe((data) => {
-      this.shipment = data;
-      console.log(this.shipment, 'okk')
-    });    
-    
-    this.route.navigate(['employee/shipment'], {queryParams: { shipment: this.shipment }});
+      this.router.navigate(['employee/shipment', data.id]);
+    });
   }
 
   onCancelClick(): void {

@@ -13,7 +13,7 @@ const routes: Routes = [
   //     {path: 'addpackage', component: PackageDialogComponent},
   //   ]
   // },
-  { path: 'shipment', component: ShipmentDetailsComponent},
+  { path: 'shipment/:id', component: ShipmentDetailsComponent},
   { path: 'routes', loadChildren: () => import('./routes/routes.module').then(m => m.RoutesModule) },
   { path: ':id', component: EmployeeComponent },
 ];

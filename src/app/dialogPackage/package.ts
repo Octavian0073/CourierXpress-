@@ -1,23 +1,27 @@
+import { Route } from "../employee/routes/route"
+
 export interface Shipment {
+    id?: number,
     packageWeight: number,
     sender: Sender,
     receiver: Recipient,
-    route: {
-        id: number,
-        fromCity: {
-            id: number,
-            cityName: string,
-            hasOffice: boolean
-        },
-        toCity: {
-            id: number,
-            cityName: string,
-            hasOffice: boolean
-        },
-        transportType: string,
-        pathId: number,
-        distance: number
-    },
+    route:Route,
+    // route: {
+    //     id: number,
+    //     fromCity: {
+    //         id: number,
+    //         cityName: string,
+    //         hasOffice: boolean
+    //     },
+    //     toCity: {
+    //         id: number,
+    //         cityName: string,
+    //         hasOffice: boolean
+    //     },
+    //     transportType: string,
+    //     pathId: number,
+    //     distance: number
+    // },
     currentCity: number,
     price: number,
     packageType: string,
@@ -54,4 +58,8 @@ export interface Recipient {
         id: number,
         roleName: string
     }
+}
+
+export interface Status {
+    packageStatus: string;
 }
