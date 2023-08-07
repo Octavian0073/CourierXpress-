@@ -32,14 +32,58 @@ export class UpdateShipmentsComponent implements OnInit {
       this.shipmentCode = data.id!;
       this.distance = data.route.distance!;
       this.time = data.route.distance! < 320 ? 1 : 2;
-      this.stringStatus = data.packageStatus;
       this.price = this.updateService.calculatePrice(data.route.distance!, data.packageWeight, data.packageType);
-
+      this.stringStatus = data.packageStatus;
     })
   }
 
-  setInTransit() {
-    this.status = { packageStatus: "in transit" };
-    this.updateService.setInTransit(this.id, this.status).subscribe();
+  arrived() {
+    this.status = { packageStatus: "arrived at destination office" };
+    this.updateService.setStatus(this.id, this.status).subscribe((data) => {
+      this.stringStatus = data.packageStatus;
+    });
+  }
+
+  delivered() {
+    this.status = { packageStatus: "delivered" };
+    this.updateService.setStatus(this.id, this.status).subscribe((data) => {
+      this.stringStatus = data.packageStatus;
+    });
+  }
+
+  inTransitReturn() {
+    this.status = { packageStatus: "in transit return" };
+    this.updateService.setStatus(this.id, this.status).subscribe((data) => {
+      this.stringStatus = data.packageStatus;
+    });
+  }
+
+  backToInitial() {
+    this.status = { packageStatus: "returned to initial office" };
+    this.updateService.setStatus(this.id, this.status).subscribe((data) => {
+      this.stringStatus = data.packageStatus
+    });
+  }
+
+  returned() {
+    this.status = { packageStatus: "returned" };
+    this.updateService.setStatus(this.id, this.status).subscribe((data) => {
+      this.stringStatus = data.packageStatus;
+    });
+  }
+
+  companyProperty() {
+    this.status = { packageStatus: "in company's possession" };
+    this.updateService.setStatus(this.id, this.status).subscribe((data) => {
+      this.stringStatus = data.packageStatus;
+    });
+  }
+
+  waitingRecipient() {
+
+  }
+
+  waitingSender() {
+
   }
 }

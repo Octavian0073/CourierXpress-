@@ -6,22 +6,6 @@ export interface Shipment {
     sender: Sender,
     receiver: Recipient,
     route:Route,
-    // route: {
-    //     id: number,
-    //     fromCity: {
-    //         id: number,
-    //         cityName: string,
-    //         hasOffice: boolean
-    //     },
-    //     toCity: {
-    //         id: number,
-    //         cityName: string,
-    //         hasOffice: boolean
-    //     },
-    //     transportType: string,
-    //     pathId: number,
-    //     distance: number
-    // },
     currentCity: number,
     price: number,
     packageType: string,

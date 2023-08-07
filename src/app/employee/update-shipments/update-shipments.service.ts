@@ -13,12 +13,12 @@ export class UpdateShipmentsService {
     return this.http.get<Shipment>(`/api/shipments/${id}`);
   }
 
-  setInTransit(id: number, status: Status) {
+  setStatus(id: number, status: Status) {
     return this.http.put<Shipment>(`/api/shipments/${id}`, status);
   }
 
-  calculatePrice(d: number, w: number, type: string) {
-    const cost = (d * 0.20) + (w * 5) + (type === "STANDARD" ? 0 : 10);
+  calculatePrice(d: number, w: number, type: string, retur = 0, waitingFee = 0) {
+    const cost = (d * 0.10) + (w * 5) + (type === "STANDARD" ? 0 : 10) + retur + (waitingFee*5);
     return cost;
   }
 }

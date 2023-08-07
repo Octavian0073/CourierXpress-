@@ -5,8 +5,7 @@
                 <p class="lead mt-4">Client's code is {{clientCode}}. </p>
                 <p class="lead mt-4">Shipment code is {{id}}. </p>
                 <p class="lead mt-4">The route's distance is {{distance}}km. </p>
-                <p class="lead mt-4">The shipment status is: {{stringStatus}}. </p>
-                
+                <p class="lead mt-4">Status: {{stringStatus}} </p>
                 <p class="lead mt-4">PRICE: {{price}} lei</p>
                 <mat-divider></mat-divider>
             </mat-card-content>
@@ -19,9 +18,11 @@
                             </mat-panel-title>
                         </mat-expansion-panel-header>
                         <div class="buttons">
-                            <button mat-raised-button color="accent"  (click)="setInTransit()">Arrived</button>
-                            <button mat-raised-button color="accent" class="mt-2" (click)="setInTransit()">Delivered</button>           
-                        </div>                    
+                            <button mat-raised-button color="accent" (click)="arrived()"
+                            [disabled]="stringStatus!=='in transit'">Arrived</button>
+                            <button mat-raised-button color="accent" class="mt-2" (click)="delivered()"
+                            [disabled]="stringStatus!=='arrived'">Delivered</button>
+                        </div>
                     </mat-expansion-panel>
                 </mat-accordion>
                 <mat-accordion>
@@ -32,9 +33,11 @@
                             </mat-panel-title>
                         </mat-expansion-panel-header>
                         <div class="buttons">
-                            <button mat-raised-button color="accent" (click)="setInTransit()">Wait for Recipient</button>           
-                            <button mat-raised-button color="accent"  class="mt-2" (click)="setInTransit()">Wait for Sender</button>
-                        </div>                    
+                            <button mat-raised-button color="accent" (click)="waitingRecipient()" 
+                            [disabled]="stringStatus!=='returned to initial office'">Wait for Recipient</button>
+                            <button mat-raised-button color="accent" class="mt-2" (click)="waitingSender()"
+                            [disabled]="stringStatus!=='arrived'">Wait for Sender</button>
+                        </div>
                     </mat-expansion-panel>
                 </mat-accordion>
                 <mat-accordion>
@@ -45,13 +48,15 @@
                             </mat-panel-title>
                         </mat-expansion-panel-header>
                         <div class="buttons">
-                        <button mat-raised-button color="accent"  (click)="setInTransit()">Start Return</button>
-                        <button mat-raised-button color="accent" class="mt-2" (click)="setInTransit()">Arrived Back</button>
-                        <button mat-raised-button color="accent" class="mt-2" (click)="setInTransit()">Returned</button>
-                    </div>
+                            <button mat-raised-button color="accent" (click)="inTransitReturn()" 
+                            [disabled]="stringStatus!=='arrived'">Start Return</button>
+                            <button mat-raised-button color="accent" class="mt-2" (click)="backToInitial()" 
+                            [disabled]="stringStatus!=='in transit return'">Arrived Back</button>
+                            <button mat-raised-button color="accent" class="mt-2" (click)="returned()" 
+                            [disabled]="stringStatus!=='returned to initial office'">Returned</button>
+                        </div>
                     </mat-expansion-panel>
                 </mat-accordion>
-                
             </mat-card-actions>
             <mat-card-footer>
                 <mat-progress-bar color="accent" mode="determinate" value="50"></mat-progress-bar>
