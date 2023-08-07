@@ -18,7 +18,7 @@ export class ShipmentDetailsService {
   }
 
   calculatePrice(d: number, w: number, type: string) {
-    const cost = (d * 0.20) + (w * 5) + (type === "STANDARD" ? 0 : 10);
+    const cost = (d * 0.15) + (w * 5) + (type === "STANDARD" ? 0 : 10);
     return cost;
   }
 }

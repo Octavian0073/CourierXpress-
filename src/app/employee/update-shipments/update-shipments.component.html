@@ -21,7 +21,7 @@
                             <button mat-raised-button color="accent" (click)="arrived()"
                             [disabled]="stringStatus!=='in transit'">Arrived</button>
                             <button mat-raised-button color="accent" class="mt-2" (click)="delivered()"
-                            [disabled]="stringStatus!=='arrived'">Delivered</button>
+                            [disabled]="stringStatus!=='arrived at destination office'">Delivered</button>
                         </div>
                     </mat-expansion-panel>
                 </mat-accordion>
@@ -34,9 +34,9 @@
                         </mat-expansion-panel-header>
                         <div class="buttons">
                             <button mat-raised-button color="accent" (click)="waitingRecipient()" 
-                            [disabled]="stringStatus!=='returned to initial office'">Wait for Recipient</button>
+                            [disabled]="stringStatus!=='arrived at destination office'">Wait for Recipient</button>
                             <button mat-raised-button color="accent" class="mt-2" (click)="waitingSender()"
-                            [disabled]="stringStatus!=='arrived'">Wait for Sender</button>
+                            [disabled]="stringStatus!=='returned to initial office'">Wait for Sender</button>
                         </div>
                     </mat-expansion-panel>
                 </mat-accordion>
@@ -49,7 +49,7 @@
                         </mat-expansion-panel-header>
                         <div class="buttons">
                             <button mat-raised-button color="accent" (click)="inTransitReturn()" 
-                            [disabled]="stringStatus!=='arrived'">Start Return</button>
+                            [disabled]="stringStatus!=='arrived at destination office'">Start Return</button>
                             <button mat-raised-button color="accent" class="mt-2" (click)="backToInitial()" 
                             [disabled]="stringStatus!=='in transit return'">Arrived Back</button>
                             <button mat-raised-button color="accent" class="mt-2" (click)="returned()" 
