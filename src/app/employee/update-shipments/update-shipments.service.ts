@@ -18,7 +18,7 @@ export class UpdateShipmentsService {
   }
 
   calculatePrice(d: number, w: number, type: string, retur = 0, waitingFee = 0) {
-    const cost = (d * 0.15) + (w * 5) + (type === "STANDARD" ? 0 : 10) + retur + (waitingFee*5);
+    const cost = (d * 0.10) + (w * 5) + (type === "STANDARD" ? 0 : 10) + retur + (waitingFee*5);
     return cost;
   }
 }

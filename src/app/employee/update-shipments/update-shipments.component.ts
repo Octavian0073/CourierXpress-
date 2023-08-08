@@ -18,6 +18,7 @@ export class UpdateShipmentsComponent implements OnInit {
   status!: Status;
   stringStatus!: string;
   id!: number;
+  returnStatus = ['in transit return', 'returned to initial office','returned'];
 
   constructor(
     private router: ActivatedRoute,
@@ -32,7 +33,8 @@ export class UpdateShipmentsComponent implements OnInit {
       this.shipmentCode = data.id!;
       this.distance = data.route.distance!;
       this.time = data.route.distance! < 320 ? 1 : 2;
-      this.price = this.updateService.calculatePrice(data.route.distance!, data.packageWeight, data.packageType);
+      this.price = this.updateService.calculatePrice(data.route.distance!, data.packageWeight, data.packageType, 
+        (this.returnStatus.includes(data.packageStatus)) ? 15 : 0);
       this.stringStatus = data.packageStatus;
     })
   }
@@ -54,6 +56,10 @@ export class UpdateShipmentsComponent implements OnInit {
   inTransitReturn() {
     this.status = { packageStatus: "in transit return" };
     this.updateService.setStatus(this.id, this.status).subscribe((data) => {
+this.price = this.updateService.calculatePrice(data.route.distance!, data.packageWeight, data.packageType, 
+        (this.returnStatus.includes(data.packageStatus)) ? 20 : 0);
+        this.price = this.updateService.calculatePrice(data.route.distance!, data.packageWeight, data.packageType, 
+          (this.returnStatus.includes(data.packageStatus)) ? 15 : 0);  
       this.stringStatus = data.packageStatus;
     });
   }
@@ -80,7 +86,18 @@ export class UpdateShipmentsComponent implements OnInit {
   }
 
   waitingRecipient() {
-
+    setTimeout(() => {
+      this.updateService.getShipment(this.id).subscribe((data) => {
+        if( data.packageStatus === "arrived at destination office" ) {
+          this.status = { packageStatus: "in transit return" };
+          this.price = this.updateService.calculatePrice(data.route.distance!, data.packageWeight, data.packageType, 
+            (this.returnStatus.includes(data.packageStatus)) ? 15 : 0);    
+          this.updateService.setStatus(this.id, this.status).subscribe((data) => {
+            console.log(data)
+          });
+        }
+      })
+    }, 5000)
   }
 
   waitingSender() {
