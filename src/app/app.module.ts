@@ -11,11 +11,11 @@ import { MatButtonModule } from '@angular/material/button';
 import { HomeComponent } from './home/home.component';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatDialogModule } from '@angular/material/dialog';
-import { DialogEmployeeComponent } from './dialogEmployee/dialog-employee/dialog-employee.component';
+import { DialogEmployeeComponent } from './dialog-employee/dialog-employee.component';
 import { MatInputModule } from '@angular/material/input';
 import { RequestInterceptor } from './request.interceptor';
-import { DialogCustomerComponent } from './dialogCustomer/dialog-customer/dialog-customer.component';
-import { DialogDriverComponent } from './dialogDriver/dialog-driver/dialog-driver.component';
+import { DialogCustomerComponent } from './dialog-customer/dialog-customer.component';
+import { DialogDriverComponent } from './dialog-driver/dialog-driver.component';
 import { FormsModule } from '@angular/forms';
 import { NgScrollbarModule } from 'ngx-scrollbar';
 

@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { DialogEmployeeComponent } from '../dialogEmployee/dialog-employee/dialog-employee.component';
-import { DialogCustomerComponent } from '../dialogCustomer/dialog-customer/dialog-customer.component';
-import { DialogDriverComponent } from '../dialogDriver/dialog-driver/dialog-driver.component';
+import { DialogEmployeeComponent } from '../dialog-employee/dialog-employee.component';
+import { DialogCustomerComponent } from '../dialog-customer/dialog-customer.component';
+import { DialogDriverComponent } from '../dialog-driver/dialog-driver.component';
 
 @Component({
   selector: 'fast-home',

@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
 import { Router } from '@angular/router';
-import { RegisterCustomerService } from '../register-customer.service';
-import { FormGroup } from '@angular/forms';
+import { RegisterService } from 'src/app/register/register.service';
 
 
 @Component({
@@ -12,22 +11,19 @@ import { FormGroup } from '@angular/forms';
 })
 export class DialogCustomerComponent implements OnInit {
 
-  id?: number;
-  shipmentCode?: number;
+  id!: number;
+  shipmentCode!: number;
 
   constructor(
     public dialogRef: MatDialogRef<DialogCustomerComponent>,
-    private registerService: RegisterCustomerService,
-    private route: Router
+    private registerService: RegisterService,
+    private router: Router
   ) { }
 
   ngOnInit(): void { }
 
   register() {
-    //     if(this.registerService.register(this.data.number)) {
-    //       this.route.navigate(['/employees']);
-    //   }
-
+    this.registerService.customerRegistration(this.shipmentCode, this.id);
   }
 
   onCancelClick(): void {

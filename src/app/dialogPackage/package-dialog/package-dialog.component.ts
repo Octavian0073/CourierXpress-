@@ -19,7 +19,7 @@ export class PackageDialogComponent implements OnInit {
   sender!: Sender;
   recipient!: Recipient;
   route!: Route;
-
+  
   postSender$ = this.packageDialogService.postSender(this.sender);
   postRecipient$ = this.packageDialogService.postRecipient(this.recipient);
   getRoutes$ = this.packageDialogService.getRoutes();
@@ -132,7 +132,7 @@ export class PackageDialogComponent implements OnInit {
         return this.packageDialogService.postShipment(this.shipment);
       })
     ).subscribe((data) => {
-      this.router.navigate(['employee/shipment', data.id]);
+        this.router.navigate(['employee/shipment', data.id]);
     });
   }
 

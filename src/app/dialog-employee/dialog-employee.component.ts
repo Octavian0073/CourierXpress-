@@ -1,21 +1,19 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
+
 import { Router } from '@angular/router';
-import { RegisterDriverService } from '../register-driver.service';
 
 @Component({
-  selector: 'fast-dialog-driver',
-  templateUrl: './dialog-driver.component.html',
-  styleUrls: ['./dialog-driver.component.css']
+  selector: 'fast-dialog',
+  templateUrl: './dialog-employee.component.html',
+  styleUrls: ['./dialog-employee.component.css']
 })
-export class DialogDriverComponent implements OnInit {
+export class DialogEmployeeComponent implements OnInit {
 
   id?: number;
-  shipmentCode?: number;
 
   constructor(
-    public dialogRef: MatDialogRef<DialogDriverComponent>,
-    private registerService: RegisterDriverService,
+    public dialogRef: MatDialogRef<DialogEmployeeComponent>,
     private route: Router
   ) { }
 
@@ -25,7 +23,7 @@ export class DialogDriverComponent implements OnInit {
     //     if(this.registerService.register(this.data.number)) {
     //       this.route.navigate(['/employees']);
     //   }
-
+    this.route.navigate(['/employee', this.id]);
   }
 
   onCancelClick(): void {

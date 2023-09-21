@@ -4,11 +4,11 @@
 <div mat-dialog-content class="dialogContainer">
   <mat-form-field>
     <mat-label>Customer ID</mat-label>
-    <input type="number" matInput [(ngModel)]="this.id">
+    <input type="number" matInput required [(ngModel)]="this.id">
   </mat-form-field>
   <mat-form-field>
     <mat-label>Shipment Code</mat-label>
-    <input type="number" matInput [(ngModel)]="this.shipmentCode">
+    <input type="number" matInput required [(ngModel)]="this.shipmentCode">
   </mat-form-field>
 </div>
 <div mat-dialog-actions class="buttons mt-1">
