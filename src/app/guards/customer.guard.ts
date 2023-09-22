@@ -6,5 +6,5 @@ export const customerGuard: CanActivateFn = () => {
   const registerService: RegisterService = Inject(RegisterService);
   const router: Router = Inject(Router);
   console.log(registerService.isCustomer, 'im in guard')
-  return registerService.isCustomer;
+  return registerService.isCustomer ? true : router.navigate(['notfound']);
 };

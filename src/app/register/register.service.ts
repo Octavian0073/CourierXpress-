@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Sender, Shipment } from '../dialogPackage/package';
-import { tap, switchMap } from 'rxjs';
+import { tap, map } from 'rxjs';
 import { Router } from '@angular/router';
 
 @Injectable({
@@ -24,15 +24,11 @@ export class RegisterService {
     }))
   }
 
-  customerRegistration(shipmentId:number, id:number) {
-    // return this.http.get<Shipment>(`/api/shipments/${shipmentId}`).pipe(
-    //   switchMap((data) => {
-    //     this.isCustomer = id === data.sender.id;
-    //     console.log(this.isCustomer,'im in service')
-    //     this.router.navigate(['/customer', id, shipmentId]);
-    //   })).subscribe((data) => {
-    //     return this.isCustomer
-    //   })
+  customerRegistration(shipmentId:number, id:number) : any {
+    return this.http.get<Shipment>(`/api/shipments/${shipmentId}`).pipe(
+      map((data) => {
+        return this.isCustomer = id === data.sender.id;
+      }))
   }
 
   driverRegistration(id:number) {

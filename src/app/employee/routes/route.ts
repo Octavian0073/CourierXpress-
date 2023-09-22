@@ -14,3 +14,9 @@ export interface Route {
     pathId?: number,
     distance?: number
 }
+
+export interface City {
+    id?: number,
+    cityName: string,
+    hasOffice: boolean
+}

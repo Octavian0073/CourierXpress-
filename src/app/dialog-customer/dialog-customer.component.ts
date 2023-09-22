@@ -23,7 +23,11 @@ export class DialogCustomerComponent implements OnInit {
   ngOnInit(): void { }
 
   register() {
-    this.registerService.customerRegistration(this.shipmentCode, this.id);
+    if (this.registerService.customerRegistration(this.shipmentCode, this.id).subscribe((data: any) => { return data })
+    ) {
+      console.log(this.registerService.customerRegistration(this.shipmentCode, this.id))
+      this.router.navigate(['/customer', this.shipmentCode]);
+    };
   }
 
   onCancelClick(): void {
