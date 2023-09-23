@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
 import { Router } from '@angular/router';
+import { RegisterService } from '../register/register.service';
 
 @Component({
   selector: 'fast-dialog-driver',
@@ -9,20 +10,22 @@ import { Router } from '@angular/router';
 })
 export class DialogDriverComponent implements OnInit {
 
-  id?: number;
-  shipmentCode?: number;
+  id!: number;
+  shipmentCode!: number;
 
   constructor(
     public dialogRef: MatDialogRef<DialogDriverComponent>,
-    private route: Router
+    private router: Router,
+    private registerService: RegisterService,
   ) { }
 
   ngOnInit(): void { }
 
   register() {
-    //     if(this.registerService.register(this.data.number)) {
-    //       this.route.navigate(['/employees']);
-    //   }
+    if (this.registerService.driverRegistration(this.id).subscribe((data: any) => { return data })
+    ) {
+      this.router.navigate(['/driver', this.shipmentCode]);
+    };
 
   }
 

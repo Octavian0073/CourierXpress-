@@ -1,0 +1,19 @@
+
+<div class="wrapper">
+    <div class="container text-center">
+        <mat-card class="example-card">
+            <mat-card-content>
+                <p class="lead mt-4 mb-4">Update your location: </p>
+                <mat-divider></mat-divider>
+            </mat-card-content>
+            <mat-card-actions class="button">
+                <div *ngFor="let city of cities | keyvalue; let i=index">
+                    <button mat-raised-button color="accent" type="button" [disabled]="city.key<=currentCityIndex.toString() ? true : false" (click)="updateCity(shipmentCode, city.value.id); disable($event)">{{city.value.cityName}}</button>
+                </div>
+            </mat-card-actions>
+            <mat-card-footer>
+                <mat-progress-bar color="accent" mode="indeterminate"></mat-progress-bar>
+            </mat-card-footer>
+        </mat-card>
+    </div>
+</div>

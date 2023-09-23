@@ -20,3 +20,12 @@ export interface City {
     cityName: string,
     hasOffice: boolean
 }
+
+export interface Path {
+    id: number;
+    fromCity: City;
+    toCity1: City;
+    toCity2?: City;
+    toCity3?: City;
+    toCity4?: City;
+}

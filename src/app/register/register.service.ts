@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Sender, Shipment } from '../dialogPackage/package';
 import { tap, map } from 'rxjs';
 import { Router } from '@angular/router';
+import { Person } from '../persons';
 
 @Injectable({
   providedIn: 'root'
@@ -19,8 +20,7 @@ export class RegisterService {
   employeeRegistration(id:number) {
     return this.http.get<Sender>(`/api/persons/${id}`).pipe(
       tap((data) => {
-        this.isEmployee = data.role.roleName === 'employee';
-        return this.isEmployee;
+        return this.isEmployee = data.role.roleName === 'employee';
     }))
   }
 
@@ -32,10 +32,9 @@ export class RegisterService {
   }
 
   driverRegistration(id:number) {
-    return this.http.get<Sender>(`/api/persons/${id}`).pipe(
-      tap((data) => {
-        this.isDriver = data.role.roleName === 'driver';
-        return this.isDriver;
+    return this.http.get<Person>(`/api/persons/${id}`).pipe(
+      map((data) => {
+        return this.isDriver = data.role.roleName === 'driver';
     }))
   }
 }

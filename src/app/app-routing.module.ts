@@ -13,6 +13,7 @@ const routes: Routes = [
     loadChildren: () => import('./customer/customer.module').then(m => m.CustomerModule),
     // canActivate: [customerGuard]
   },
+  { path: 'driver', loadChildren: () => import('./driver/driver.module').then(m => m.DriverModule) },
   { path: '**', component: NotfoundComponent },
 ];
 
