@@ -27,7 +27,8 @@ export class RegisterService {
   customerRegistration(shipmentId:number, id:number) : any {
     return this.http.get<Shipment>(`/api/shipments/${shipmentId}`).pipe(
       map((data) => {
-        return this.isCustomer = id === data.sender.id;
+        this.isCustomer = id === data.sender.id;
+        return this.isCustomer;
       }))
   }
 
