@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Sender, Shipment } from '../dialogPackage/package';
-import { tap, map } from 'rxjs';
+import { Shipment } from '../dialogPackage/package';
+import { map } from 'rxjs';
 import { Router } from '@angular/router';
 import { Person } from '../persons';
 
@@ -15,16 +15,17 @@ export class RegisterService {
   customerId!: number;
   isDriver: boolean = false;
 
-  constructor(private http:HttpClient, private router: Router) { }
+  constructor(private http: HttpClient, private router: Router) { }
 
-  employeeRegistration(id:number) {
-    return this.http.get<Sender>(`/api/persons/${id}`).pipe(
-      tap((data) => {
-        return this.isEmployee = data.role.roleName === 'employee';
-    }))
+  employeeRegistration(id: number) {
+    return this.http.get<Person>(`/api/persons/${id}`).pipe(
+      map((data) => {
+        this.isEmployee = data.role.roleName === 'employee';
+        return this.isEmployee;
+      }))
   }
 
-  customerRegistration(shipmentId:number, id:number) : any {
+  customerRegistration(shipmentId: number, id: number): any {
     return this.http.get<Shipment>(`/api/shipments/${shipmentId}`).pipe(
       map((data) => {
         this.isCustomer = id === data.sender.id;
@@ -32,10 +33,11 @@ export class RegisterService {
       }))
   }
 
-  driverRegistration(id:number) {
+  driverRegistration(id: number) {
     return this.http.get<Person>(`/api/persons/${id}`).pipe(
       map((data) => {
-        return this.isDriver = data.role.roleName === 'driver';
-    }))
+        this.isDriver = data.role.roleName === 'driver';
+        return this.isDriver;
+      }))
   }
 }

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
 
 import { Router } from '@angular/router';
+import { RegisterService } from '../register/register.service';
 
 @Component({
   selector: 'fast-dialog',
@@ -10,20 +11,21 @@ import { Router } from '@angular/router';
 })
 export class DialogEmployeeComponent implements OnInit {
 
-  id?: number;
+  id!: number;
 
   constructor(
     public dialogRef: MatDialogRef<DialogEmployeeComponent>,
-    private route: Router
+    private router: Router,
+    private registerService: RegisterService
   ) { }
 
   ngOnInit(): void { }
 
   register() {
-    //     if(this.registerService.register(this.data.number)) {
-    //       this.route.navigate(['/employees']);
-    //   }
-    this.route.navigate(['/employee', this.id]);
+    this.registerService.employeeRegistration(this.id).subscribe((data: boolean) => {
+      this.registerService.isEmployee = data;
+      this.router.navigate(['/employee', this.id]);
+    })
   }
 
   onCancelClick(): void {

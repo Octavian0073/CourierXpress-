@@ -22,11 +22,10 @@ export class DialogDriverComponent implements OnInit {
   ngOnInit(): void { }
 
   register() {
-    if (this.registerService.driverRegistration(this.id).subscribe((data: any) => { return data })
-    ) {
+    this.registerService.driverRegistration(this.id).subscribe((data: boolean) => {
+      this.registerService.isDriver = data;
       this.router.navigate(['/driver', this.shipmentCode]);
-    };
-
+    })
   }
 
   onCancelClick(): void {
