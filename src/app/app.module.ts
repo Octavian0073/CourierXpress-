@@ -6,18 +6,19 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { NotfoundComponent } from './notfound/notfound.component';
+import { NotfoundComponent } from './shared/components/notfound/notfound.component';
 import { MatButtonModule } from '@angular/material/button';
-import { HomeComponent } from './home/home.component';
+import { HomeComponent } from './features/home/home.component';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatDialogModule } from '@angular/material/dialog';
-import { DialogEmployeeComponent } from './dialog-employee/dialog-employee.component';
+
 import { MatInputModule } from '@angular/material/input';
-import { RequestInterceptor } from './request.interceptor';
-import { DialogCustomerComponent } from './dialog-customer/dialog-customer.component';
-import { DialogDriverComponent } from './dialog-driver/dialog-driver.component';
+import { RequestInterceptor } from './core/interceptors/request.interceptor';
 import { FormsModule } from '@angular/forms';
 import { NgScrollbarModule } from 'ngx-scrollbar';
+import { DialogCustomerComponent } from './features/home/components/dialog-customer/dialog-customer.component';
+import { DialogDriverComponent } from './features/home/components/dialog-driver/dialog-driver.component';
+import { DialogEmployeeComponent } from './features/home/components/dialog-employee/dialog-employee.component';
 
 @NgModule({
   declarations: [
