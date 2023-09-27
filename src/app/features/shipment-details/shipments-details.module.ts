@@ -4,6 +4,7 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatCardModule } from '@angular/material/card';
 import { ShipmentDetailsComponent } from './shipment-details.component';
 import { MatButtonModule } from '@angular/material/button';
+import { CommonModule } from '@angular/common';
 
 @NgModule({
   declarations: [ShipmentDetailsComponent],
@@ -11,7 +12,8 @@ import { MatButtonModule } from '@angular/material/button';
     MatProgressBarModule,
     MatDividerModule,
     MatCardModule,
-    MatButtonModule
+    MatButtonModule,
+    CommonModule
   ]
 })
 export class ShipmentsDetailsModule { }

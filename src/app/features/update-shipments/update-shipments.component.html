@@ -6,7 +6,7 @@
                 <p class="lead mt-4">Shipment code is {{id}}. </p>
                 <p class="lead mt-4">The route's distance is {{distance}}km. </p>
                 <p class="lead mt-4">Status: {{stringStatus}} </p>
-                <p class="lead mt-4">PRICE: {{price}} lei</p>
+                <p class="lead mt-4">PRICE: {{price | number : '1.2-2'}} lei</p>
                 <mat-divider></mat-divider>
             </mat-card-content>
             <mat-card-actions class="button">
