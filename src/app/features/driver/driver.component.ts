@@ -45,6 +45,6 @@ export class DriverComponent implements OnInit {
   }
 
   disable(event: any) {
-   event.currentTarget.disabled= true;
+    event.currentTarget.disabled= true;
   }
 }
