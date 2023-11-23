@@ -7,8 +7,8 @@
                 <mat-divider></mat-divider>
             </mat-card-content>
             <mat-card-actions class="button">
-                <div *ngFor="let city of cities | keyvalue; let i=index">
-                    <button mat-raised-button color="accent" type="button" [disabled]="city.key<=currentCityIndex.toString() ? true : false" (click)="updateCity(shipmentCode, city.value.id); disable($event)">{{city.value.cityName}}</button>
+                <div *ngFor="let path of paths; let i=index">
+                    <button mat-raised-button color="accent" type="button" [disabled]="i<=currentCityIndex ? true : false" (click)="updateCity(shipmentCode, path.id!); disable($event)">{{path.cityName}}</button>
                 </div>
             </mat-card-actions>
             <mat-card-footer>

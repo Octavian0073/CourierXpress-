@@ -11,7 +11,7 @@ import { RoutesService } from './services/routes.service';
 })
 export class RoutesComponent implements OnInit {
 
-  displayedColumns: string[] = ['originCity', 'destinationCity', 'transportType'];
+  displayedColumns: string[] = ['originCity', 'destinationCity'];
   routes !: Route[];
   routes$ = this.routesService.getRoutes();
 
@@ -27,7 +27,7 @@ export class RoutesComponent implements OnInit {
   }
 
   addData() {
-    this.dialog.open(DialogRouteComponent, { width:'450px', height: '550px' });
+    this.dialog.open(DialogRouteComponent, { width:'350px', height: '350px' });
   }
 
 

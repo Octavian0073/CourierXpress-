@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { DriverService } from './services/driver.service';
 import { switchMap } from 'rxjs';
-import { City, Path } from '../../shared/models/route';
+import { City} from '../../shared/models/route';
 
 @Component({
   selector: 'fast-driver',
@@ -12,8 +12,8 @@ import { City, Path } from '../../shared/models/route';
 export class DriverComponent implements OnInit {
 
   shipmentCode!: number;
-  cities: { [key: number]: { id: number, cityName: string } } = {};
-  path!: Path;
+  cities: { [key: number]: { city : City } } = {};
+  paths!: City[];
   cityCounter: number = 0;
   currentCity!: number;
   currentCityIndex!: number;
@@ -25,17 +25,15 @@ export class DriverComponent implements OnInit {
     this.driverService.getShipment(this.shipmentCode).pipe(
       switchMap((data) => {
         this.currentCity = data.currentCity;
-        return this.driverService.getPath(data.route.pathId!)
+        return this.driverService.getPath(data.route.fromCity.id!, data.route.toCity.id!)
       })).subscribe((data) => {
-        this.path = data;
-        Object.entries(data).forEach(([key, value]) => {
-          if (typeof value.cityName === 'string') {
-            this.cities[this.cityCounter] = { id: value.id, cityName: value.cityName };
-            if(value.id === this.currentCity) {
-              this.currentCityIndex = this.cityCounter;
-            }
-            this.cityCounter++;
+        this.paths = data;
+        console.log(this.paths)
+        this.paths.forEach(data => {
+          if(data.id === this.currentCity) {
+            this.currentCityIndex = this.cityCounter;
           }
+          this.cityCounter++;
         })
       })
   }

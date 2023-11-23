@@ -26,26 +26,20 @@ export class DialogRouteComponent implements OnInit {
 
   ngOnInit(): void {
     this.addRouteForm = this.fb.group({
-      originCityId: [0, { validators: [Validators.required] }],
       originCity: ['', { validators: [Validators.required] }],
-      destinationCityId: [0, { validators: [Validators.required] }],
-      destinationCity: ['', { validators: [Validators.required] }],
-      transportType: ['', { validators: [Validators.required] }]
+      destinationCity: ['', { validators: [Validators.required] }]
     });
 
     this.addRouteForm.valueChanges.subscribe((data) => {
       this.route = {
         fromCity: {
-          id: data.originCityId,
           cityName: data.originCity,
-          hasOffice: true
+          hasOffice: true,
         },
         toCity: {
-          id: data.destinationCityId,
           cityName: data.destinationCity,
           hasOffice: true
         },
-        transportType: data.transportType,
       }
     })
   }
