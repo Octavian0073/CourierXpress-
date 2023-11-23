@@ -38,9 +38,7 @@ export class PackageDialogComponent implements OnInit {
 
   ngOnInit(): void {
     this.registerForm = this.fb.group({
-      originCityId: [0, { validators: [Validators.required] }],
       originCity: ['', { validators: [Validators.required] }],
-      destinationCityId: [0, { validators: [Validators.required] }],
       destinationCity: ['', { validators: [Validators.required] }],
       senderName: ['', { validators: [Validators.required] }],
       senderNumber: ['', { validators: [Validators.required] }],
@@ -54,7 +52,6 @@ export class PackageDialogComponent implements OnInit {
       this.recipient = {
         personName: data.recipientName,
         inCity: {
-          id: data.destinationCityId,
           cityName: data.destinationCity,
           hasOffice: true
         },
@@ -67,7 +64,6 @@ export class PackageDialogComponent implements OnInit {
       this.sender = {
         personName: data.senderName,
         inCity: {
-          id: data.originCityId,
           cityName: data.originCity,
           hasOffice: true
         },
@@ -78,19 +74,14 @@ export class PackageDialogComponent implements OnInit {
         }
       };
       this.route = {
-        id: 1,
         fromCity: {
-          id: data.originCityId,
           cityName: data.originCity,
           hasOffice: true
         },
         toCity: {
-          id: data.destinationCityId,
           cityName: data.destinationCity,
           hasOffice: true
         },
-        transportType: "SPECIAL",
-        pathId: 0,
         distance: 0
       }
 
@@ -99,7 +90,7 @@ export class PackageDialogComponent implements OnInit {
         sender: this.sender,
         receiver: this.recipient,
         route: this.route,
-        currentCity: data.originCityId,
+        currentCity: 0,
         price: 5,
         packageType: data.transportType,
         packageStatus: "waiting for response",
@@ -120,14 +111,12 @@ export class PackageDialogComponent implements OnInit {
         this.recipient.id = recipientData.id;
         this.sender.id = senderData.id;
         routesData.map((route) => {
-          if (route.fromCity.id === this.shipment.route.fromCity.id &&
-            route.toCity.id === this.shipment.route.toCity.id
+          if (route.fromCity.cityName.toLowerCase() === this.shipment.route.fromCity.cityName.toLowerCase() &&
+            route.toCity.cityName.toLowerCase() === this.shipment.route.toCity.cityName.toLowerCase()
           ) {
             this.shipment.route.id = route.id!;
-            this.shipment.route.pathId = route.pathId!;
             this.shipment.route.distance = route.distance!;
           }
-
         })
         return this.packageDialogService.postShipment(this.shipment);
       })

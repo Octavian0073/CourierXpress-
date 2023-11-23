@@ -23,7 +23,7 @@ export class CustomerComponent implements OnInit {
     this.customerService.getShipment(this.shipmentCode).pipe(
       switchMap((data) => {
         this.clientCode = data.sender.id!;
-        this.cityId = data.currentCity;
+        this.cityId = data.currentCity!;
         return this.customerService.getCity(this.cityId)
       })
     ).subscribe((data) => {

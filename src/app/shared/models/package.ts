@@ -18,7 +18,7 @@ export interface Sender {
     id?:number,
     personName: string,
     inCity: {
-        id: number,
+        id?: number,
         cityName: string,
         hasOffice: boolean
     },
@@ -33,7 +33,7 @@ export interface Recipient {
     id?:number,
     personName: string,
     inCity: {
-        id: number,
+        id?: number,
         cityName: string,
         hasOffice: boolean
     },

@@ -2,7 +2,7 @@ export interface Person {
     id?: number;
     personName: string;
     inCity: {
-        id: number,
+        id?: number,
         cityName: string,
         hasOffice: boolean
     },
